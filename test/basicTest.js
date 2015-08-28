@@ -6,7 +6,17 @@ var path = require('path');
 var output = path.resolve('./', 'test/api.html');
 
 describe('grunt aglio', function(){
-	this.timeout(5000);
+	this.timeout(60000); // This can take some time sadly
+
+	function waitForGrunt(callback){
+		setTimeout(function(){
+			if(grunt.task._running){
+				waitForGrunt(callback);
+			} else{
+				callback();
+			}
+		}, 1000);
+	}
 
 	function resetTempFiles(callback){
 		if(fs.existsSync(output)){
@@ -41,12 +51,12 @@ describe('grunt aglio', function(){
 		grunt.task.run('aglio');
 		grunt.task.start();
 
-		setTimeout(function(){
+		waitForGrunt(function(){
 			fs.exists(output, function(exists){
 				assert(exists);
 				resetTempFiles(done);
 			})
-		}, 1000);
+		});
 
 	});
 
@@ -69,31 +79,31 @@ describe('grunt aglio', function(){
 		grunt.task.run('aglio');
 		grunt.task.start();
 
-		setTimeout(function(){
+		waitForGrunt(function(){
 			fs.exists(output, function(exists){
 				assert(exists);
 				resetTempFiles(done)
 			})
-		}, 1000);
+		});
 	});
 
-  it('should use a custom jade template', function (done) {
+  it('should use a different theme', function (done) {
     var configObj = {};
     configObj[output] = [path.resolve('./', 'test/sample.md')];
     grunt.config('aglio.test.files', configObj);
-    grunt.config('aglio.test.options.theme', './node_modules/aglio/templates/slate');
+    grunt.config('aglio.test.options.theme', 'slate');
     grunt.task.run('aglio');
     grunt.task.start();
 
-    setTimeout(function(){
+    waitForGrunt(function(){
       fs.exists(output, function(exists){
         assert(exists);
         // Make sure that it used the slate theme
         var contents = fs.readFileSync(output, 'utf8');
-        assert(contents.indexOf('//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css') > -1);
+        assert(contents.indexOf('body{color:#c8c8c8;background:#272b30') > -1);
         resetTempFiles(done);
       })
-    }, 1000);
+    });
   });
 
   it('should be able to create multiple output files', function(done){
@@ -136,14 +146,14 @@ describe('grunt aglio', function(){
     grunt.task.run('aglio');
     grunt.task.start();
 
-    setTimeout(function(){
+    waitForGrunt(function(){
       assert(fs.existsSync(output));
       assert(fs.existsSync(output2));
       assert(fs.existsSync(output3));
       assert(fs.existsSync(output4));
       assert(fs.existsSync(output5));
       resetTempFiles(done);
-    }, 4000);
+    });
   });
 
   it('should be able to process include directive', function(done){
@@ -157,10 +167,10 @@ describe('grunt aglio', function(){
     grunt.task.run('aglio');
     grunt.task.start();
 
-    setTimeout(function(){
+    waitForGrunt(function(){
       assert(fs.existsSync(output));
       resetTempFiles(done);
-    }, 1000);
+    });
   });
 
   after(function(done){

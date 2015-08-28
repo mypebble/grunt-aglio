@@ -1,10 +1,12 @@
-[![Dependency Status](https://david-dm.org/arbus/grunt-aglio.png)](https://david-dm.org/arbus/grunt-aglio)
-[![Build Status](https://travis-ci.org/arbus/grunt-aglio.png?branch=master)](https://travis-ci.org/arbus/grunt-aglio)
+[![Dependency Status](https://david-dm.org/mypebble/grunt-aglio.png)](https://david-dm.org/mypebble/grunt-aglio)
+[![Build Status](https://travis-ci.org/mypebble/grunt-aglio.png?branch=master)](https://travis-ci.org/mypebble/grunt-aglio)
 
 grunt-aglio
 ===========
 
 > Grunt plugin to generate aglio documentation
+
+This is a fork by Pebble in order to keep Aglio up to date
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
@@ -12,13 +14,13 @@ This plugin requires Grunt `~0.4.1`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-aglio --save-dev
+npm install grunt-aglio-pebble --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-aglio');
+grunt.loadNpmTasks('grunt-aglio-pebble');
 ```
 
 ## The Aglio task
@@ -132,6 +134,9 @@ grunt.initConfig({
 ```
 
 ## Changelog
++ 0.3.5
+  + Forked by Pebble
+  + Bump aglio to 2.0.4
 + 0.3.4
   + Bump aglio version to 1.18
 + 0.3.3
@@ -164,3 +169,4 @@ grunt.initConfig({
 + @cjthompson
 + @chesleybrown
 + @ebonlieu
++ @kennydude (under @mypebble)
