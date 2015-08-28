@@ -1,5 +1,5 @@
 [![Dependency Status](https://david-dm.org/mypebble/grunt-aglio.png)](https://david-dm.org/mypebble/grunt-aglio)
-[![Build Status](https://travis-ci.org/mypebble/grunt-aglio.png?branch=master)](https://travis-ci.org/mypebble/grunt-aglio)
+[![Circle CI](https://circleci.com/gh/mypebble/grunt-aglio.svg?style=svg)](https://circleci.com/gh/mypebble/grunt-aglio)
 
 grunt-aglio
 ===========
